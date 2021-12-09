@@ -2,7 +2,7 @@ import std/[strutils]
 
 # https://adventofcode.com/2021/day/2
 
-proc part1*(filename: string): int =
+proc part1(filename: string): int =
   var depth, horizontal = 0
 
   for line in filename.lines:
@@ -14,7 +14,7 @@ proc part1*(filename: string): int =
 
   result = depth * horizontal
 
-proc part2*(filename: string): int =
+proc part2(filename: string): int =
   var depth, horizontal, aim = 0
 
   for line in filename.lines:
