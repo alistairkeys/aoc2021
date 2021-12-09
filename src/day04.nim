@@ -9,7 +9,7 @@ type
   BingoNumber = 0..99
 
   Board = ref object
-    rows, cols: array[5, set[BingoNumber]]
+    rows, cols: array[squaresInRowOrCol, set[BingoNumber]]
 
   BingoGame = ref object
     numbersToPick: seq[BingoNumber]
