@@ -25,8 +25,9 @@ proc part2(filename: string): int =
       cnt1: int): char): string =
 
     var values = values
+    let maxLength = max(values.mapIt(it.len))
 
-    for idx in 0 ..< values.len:
+    for idx in 0 ..< maxLength:
       let
         cnt0 = values.countIt(it[idx] == '0')
         cnt1 = values.countIt(it[idx] == '1')
