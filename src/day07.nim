@@ -11,7 +11,7 @@ proc part1(filename: string): int =
 
 when isMainModule:
   doAssert part1("../data/day07_example.txt") == 37
-  echo part1("../data/day07_input.txt") # 337833
+  echo part1("../data/day07_input.txt")
 
   #doAssert part2("../data/day07_example.txt") == 168
   #echo part2("../data/day07_input.txt")
