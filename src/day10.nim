@@ -4,9 +4,6 @@ import std/[sequtils, tables, algorithm, math]
 
 const expectedToken = {'(': ')', '[': ']', '{': '}', '<': '>'}.toTable
 
-func isOpening(ch: char): bool = expectedToken.hasKey ch
-func isClosing(ch: char): bool = ch in expectedToken.values.toSeq
-
 type
   ParsedLine = object
     stack: seq[char]
@@ -15,10 +12,9 @@ type
 proc parseLine(line: string): ParsedLine =
   const badTokenScore = {')': 3, ']': 57, '}': 1197, '>': 25137}.toTable
   for token in line:
-    if isOpening token:
+    if expectedToken.hasKey token:
       result.stack.add token
-    elif isClosing(token) and token != expectedToken.getOrDefault(
-        result.stack.pop, '\0'):
+    elif token != expectedToken.getOrDefault(result.stack.pop, '\0'):
       result.badTokenScore = badTokenScore[token]
       break
   result.stack.reverse
