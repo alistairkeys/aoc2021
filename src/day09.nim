@@ -8,26 +8,21 @@ type
 
 proc loadHeightMap(filename: string): seq[seq[int]] =
 
-  const dummyValue = 9
-
   template addHeightRow(l: string) =
     var row = l.toSeq.mapIt(parseInt $it)
-    result.add(@[dummyValue] & row & @[dummyValue])
+    result.add(@[9] & row & @[9])
 
   var file = open(filename, fmRead)
   defer: close(file)
 
   # The result has dummy border values added to avoid requiring 'if' checks
   # later in the code.
-
   var s = file.readLine
-  result.add newSeqWith(s.len + 2, dummyValue)
+  result.add newSeqWith(s.len + 2, 9)
   addHeightRow s
-
   while not endOfFile(file):
     addHeightRow file.readLine
-
-  result.add newSeqWith(s.len + 2, dummyValue)
+  result.add newSeqWith(s.len + 2, 9)
 
 proc findLowPoints(heights: seq[seq[int]]): seq[LowPoint] =
   for row in 1 ..< heights.high:
@@ -38,8 +33,7 @@ proc findLowPoints(heights: seq[seq[int]]): seq[LowPoint] =
         result.add LowPoint(row: row, col: col, height: here)
 
 proc part1(filename: string): int =
-  var heights = loadHeightMap filename
-  result = sum findLowPoints(heights).mapIt(it.height + 1)
+  sum loadHeightMap(filename).findLowPoints.mapIt(it.height + 1)
 
 proc part2(filename: string): int =
   var
