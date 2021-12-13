@@ -28,10 +28,9 @@ proc part1(filename: string): int =
 
 proc part2(filename: string): int =
   const incompleteTokenScores = {')': 1, ']': 2, '}': 3, '>': 4}.toTable
-  var incompleteLineScores = collect:
-    for parsedLine in filename.lines.toSeq.map(parseLine).filterIt(
-        it.badTokenScore == 0):
-      parsedLine.stack.foldl(a * 5 + incompleteTokenScores[expectedToken[b]], 0)
+  let incompleteLineScores = filename.lines.toSeq.map(parseLine).filterIt(
+      it.badTokenScore == 0).map(x => x.stack.foldl(a * 5 +
+      incompleteTokenScores[expectedToken[b]], 0))
   incompleteLineScores.sorted[incompleteLineScores.len div 2]
 
 when isMainModule:
