@@ -1,4 +1,4 @@
-import std/[sequtils, tables, algorithm, math, sugar]
+import std/[sequtils, tables, algorithm, math]
 
 # https://adventofcode.com/2021/day/10
 
@@ -28,8 +28,8 @@ proc part1(filename: string): int =
 
 proc part2(filename: string): int =
   const incompleteTokenScores = {')': 1, ']': 2, '}': 3, '>': 4}.toTable
-  let incompleteLineScores = filename.lines.toSeq.map(parseLine).filterIt(
-      it.badTokenScore == 0).map(x => x.stack.foldl(a * 5 +
+  let incompleteLineScores = filename.lines.toSeq.mapIt(it.parseLine).filterIt(
+      it.badTokenScore == 0).mapIt(it.stack.foldl(a * 5 +
       incompleteTokenScores[expectedToken[b]], 0))
   incompleteLineScores.sorted[incompleteLineScores.len div 2]
 
