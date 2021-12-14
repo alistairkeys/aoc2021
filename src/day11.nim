@@ -64,8 +64,8 @@ proc part2(filename: string): int =
       foundAnyNonZero = foundAnyNonZero or row.anyIt(it > 0)
 
 when isMainModule:
-  doAssert part1("C:/git/aoc/aoc2021/data/day11_example.txt", 10) == 204
-  doAssert part1("C:/git/aoc/aoc2021/data/day11_example.txt", 100) == 1656
+  doAssert part1("../data/day11_example.txt", 10) == 204
+  doAssert part1("../data/day11_example.txt", 100) == 1656
   echo part1("../data/day11_input.txt", 100)
 
   doAssert part2("../data/day11_example.txt") == 195
