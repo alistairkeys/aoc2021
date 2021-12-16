@@ -20,7 +20,7 @@ proc part1(filename: string): int =
   for l in filename.lines:
     var parts = l.split("-").mapIt(translate it)
     # Add A -> B and also B -> A.  The recursive function takes care of whether
-    # backtracking, not the problem of this part of the code!
+    # backtracking makes sense, not the problem of this part of the code!
     map.mgetOrPut(parts[0], {}).incl parts[1]
     map.mgetOrPut(parts[1], {}).incl parts[0]
 
